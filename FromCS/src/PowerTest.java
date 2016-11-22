@@ -911,7 +911,102 @@ public int countHi(String str){
 	return count;
 }
 
+// return true if the string "CAT" and "dog" appear the same number of times in the given string  string.
 
+public boolean catDog(String str)
+{
+	int cats=0;
+	int dog=0;
+	for(int i =0; i<str.length()-2;i++){
+		if (str.substring(i, i+3).contentEquals("cat"))
+			cats = cats +1;
+		if (str.substring(i, i+3).contentEquals("dog"))
+			dog +=1;
+		
+	}
+	return cats ==dog;
+}
+
+// return the number of times that the string "code" appears anywhere in the given string except 
+// well accept any letter for the 'd'. so "cope" and "cooe" count
+
+public int countCode(String str){
+	int count =0;
+	for(int i=0; i<str.length()-3;i++)
+		if (str.charAt(i) == 'c' && str.charAt(i+1) =='o'
+			&& str.charAt(i+3) =='e')
+			count++;
+		return count;
+		
+}
+
+// given two strings, return true if either of the strings appears at the very end of the other string,
+// ignoring upper/lower case differences ( in other words, the compuation should not be "case sesntieve"
+//Note: str.toLowerCase() returns the lowercase version of a string 
+
+//endOther("Hiabc","abc") -> true
+//endother("ABC","HiABC") -> true
+//endOther("abc","abcXabc") -> true
+
+public boolean endOther(String a, String b){
+
+	a=a.toLowerCase();
+	b=b.toLowerCase();
+	boolean test1 = a.length() >= b.length()
+			&& a.substring(a.length() - b.length()).equals(b);
+	boolean test2= b.length() >= a.length()
+			&& b.substring(b.length() - a.length()).equals(a);
+	
+	return test1 || test2;		
+}
+
+// return true if the given string entries contains an appearance of "xyz" where the xyz is not directly
+// preceeded by a period(.). so "xxyz" counts but "x.xyz" does not.
+
+public boolean xyxThere(String str)
+{
+	if(str.length() >3){
+		if(str.substring(0,3).equals("xyz")) return true;
+		for (int i =0; i<str.length()-3;i++)
+			{
+			if(str.substring(i+1, i+4).equals("xyz") 
+					&& str.charAt(i) !='.')
+				return true;		
+			}
+		}
+	return false;
+}
+
+// return true if the given string contains a "bob" string, but where the middle 'o' char can be any char
+
+//bobThere("abcbob")  true
+//bobThere("b9b") true
+//bobThere("bac") flase
+
+public boolean bobThere(String str){
+	if (str.length() >=3)
+		for( int i =0; i <str.length() -2; i++)
+			if(str.charAt(i) == 'b' && str.charAt(i+2) == 'b')
+				return true;	
+	return false;
+}
+
+// a stirng is xy-balanced if for all the 'x' chars in the string, there exists a 'y' char somewhere later in the string
+// So "xxy" is balanced, but " xyx" is balanced, but "xyx" is not. 
+// One 'y' can balance multiple 'x's. return  true if the given string is xy-balanced.
+
+//xyBalance("aaxbby") true
+//.............aaxbb   => false
+//..............yaaxbb => false
+
+public boolean xyBalance(String str)
+{
+	int lastX = str.lastIndexOf("y");
+	int lastY = str.lastIndexOf("x");
+	if (lastX == -1 && lastY == -1) return true;
+	return (lastX > lastY) ;
+	
+}
 
 // Given two strings, append them together and re
 
@@ -921,7 +1016,8 @@ public int countHi(String str){
 		PowerObj = new PowerTest();
 		
 		int[] nums={1,2,6,6,4};
-				
+		
+		System.out.println(PowerObj.xyBalance("aaxbby"));
 		System.out.println(PowerObj.doubleChar("TThhee"));		
 //		System.out.println(PowerObj.extraFront("Hello"));	
 //		System.out.println(PowerObj.minCat("lo", "Hi"));

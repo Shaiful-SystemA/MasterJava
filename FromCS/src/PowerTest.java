@@ -369,7 +369,8 @@ public String frontTimes(String str, int n){
 
 public int CountXX(String str){
 	int count =0;
-	for(int i =0; i < str.length()-1; i++){	
+	for(int i =0; i < str.length()-1; i++)
+	{	
 		if(str.substring(i, i+2).equals("XX")) count ++;
 	}
 	return count;	
@@ -597,6 +598,322 @@ public boolean has271(int[] nums){
 	return false;
 }
 
+public String helloName(String name){
+	return "Hello" + name + "!";
+}
+
+
+public String makeAbba(String a, String b){
+	
+	return a + b + a +b ;
+}
+
+public String makeTags(String tag, String word){
+	
+	return "<" + tag + ">" +  word  + "<" + tag +">";
+}
+
+public String makeOutWorld(String out, String word){
+	
+	return out.substring(0, 2) + word + out.substring(2);
+}
+
+public String extraEnd(String str){
+	int len = str.length();
+	return str.substring(len -2) +str.substring(len -2) + str.substring(len);
+}
+
+public String firstTwo(String str){
+	if (str.length() < 2) return str;
+	else
+		return str.substring(0,2);
+}
+
+public String firstHalf(String str){
+	return str.substring(0, str.length()/2);
+}
+
+public String withoutEnd(String str){
+	int len = str.length();
+	//return str.substring(0,2 ) + str.substring(len-2);
+	return str.substring(1,str.length()-1);
+}
+
+public String comboString(String a, String b){
+	
+	if(a.length() > b.length()) return b + a + "    "+b;
+	else
+	 return a + b +a;
+}
+ 
+public String nonStart(String a, String b){
+	return a.substring(1) + b.substring(1);
+}
+
+//given a string, return a "rotated left 2" version where the first 2 chars are moved to the end. The string length 
+// will be at least 2
+
+public String left2(String str){
+	return str.substring(2) + str.substring(0, 2);  // rubbbe the first 2 characters 
+}
+
+public String right2(String str){
+	int len = str.length();
+	return str.substring(len-2)+ str.substring(0, len-2);
+}
+
+// given a string, return a string lenth 1 from its font, unlcess front is false
+// in which case return a astring length 1 from its back. The string will be non-empty
+
+public String theEnd(String str, boolean front){
+	if(front)
+		return str.substring(0,1);
+	else
+		return str.substring(str.length()-1);
+}
+
+// given a string, return a version withour both  the firs and last char of the String,.
+// The string may be any length, including 0
+
+public String withouEnd(String str){
+	if (str.length() <=2) return "";
+	 	else
+	return str.substring(1, str.length() -1);
+}
+
+public String middleTwo(String str){
+	int len = str.length();
+	return str.substring(len/2-1, len/ 2+1);
+}
+
+public boolean endsly(String str){
+	int len = str.length();
+	if(len<2) return false;
+	return(str.substring(len -2).equals("ly"));
+}
+
+// given a string an an int n, return a string made of the first and last n chars form the string 
+// The string length will be at least n
+
+public String nTwice(String str, int n){
+	return str.substring(0,n) + str.substring(str.length()-n);
+}  
+
+// given a string an an index, return  a string length 2 starting at the given index. If the index
+// is to big or too small to define a string length 2, use the first 2 chars. TRhe String length will be at least 2
+
+public String twoChar(String str, int index){
+	
+	if(index < 0 || index +2 > str.length())
+		return str.substring(0, 2);
+	return str.substring(index, index +2);	
+}
+
+// given a string odd length, return the string length 3 from its middle, so "Candy"
+// yileds "and". The string length will be at least 3
+
+public String middleThree(String str){
+	int len = str.length();
+	if(len ==3) return str;
+	return str.substring(len /2-1, len/2+2);
+}
+
+//Given a string, return true if "bad" appears starting at index 0 or 1 in the string, such as with baddxx
+// or "xbaddx" but not xxbaddxx. The string may be any length, incliuding 0.
+//Note use.equals() to compare 2 strings
+
+public boolean hadBad(String str){
+	if(str.length() <=2) return false;
+	if(str.length() ==3) return str.substring(0, 3).equals("bad");
+	return str.substring(0,3).equals("bad") || str.substring(1,4).equals("bad");
+}
+
+// Given a string, return a string length 2 made of its frist 2 chars. If the string length is less than 2, use '@' for the
+// missing chars
+
+public String atFirst(String str){
+	
+	if(str.length()==0) return "@@";
+	if(str.length()==1) return str + "@";
+	return str.substring(0,2);
+}
+
+//given 2 strings, a and b, return a new string mede of the first char of a and the last char of b, so "yo"
+// and "java" yields "ya". If either string is length 0, use '@' for its missing char
+
+public String lastChars(String a, String b){
+	if(a.length() ==0 && b.length() !=0)
+		return "@" +"" + b.charAt(b.length()-1);
+	if (b.length() ==0 && a.length() !=0)
+		return a.charAt(0) +"@";
+	if(a.length()==0 && b.length()==0)
+		return "@@";
+	return a.charAt(0) +""+ b.charAt(b.length()-1);
+}
+
+//Given two strings, appedn them together (Knows as concentation) and return the result
+//however, if the concatenation creates a double-char, then omit one of the chars, so "abc"
+// and "cat" yields "abcat"
+
+public String conCat(String a, String b){
+	if(a.length()!=0 && b.length()!=0 && a.charAt(a.length()-1) == b.charAt(0))
+		return a + b.substring(1);
+		return a+b;
+}
+
+//Given a string of any length, rerturn a new string where the last 2 chars, if present, are swapped, so "coding" yields "codign"
+
+public String lastTwo(String str){
+	if(str.length()<2) return str;
+	return str.substring(0, str.length()-2)+ str.charAt(str.length()-1) + str.charAt(str.length()-2);
+	//break into first 4 then position at swap
+}
+
+// Given a string, if the string begins with "red" or "blue" return tat color string, otherwise return the empty string
+
+public String seeColor(String str){
+	if(str.length() >=3 &&  str.substring(0,3).equals("red"))
+		return "red";
+	if(str.equals("blue"))
+			return "blue";
+	else
+		return "";
+}
+
+
+// given a string, return true if the first 2 chars in the string also appear at the end of the string, such as with "edited"
+
+public boolean frontAgain(String str)
+{
+	int len = str.length();
+	if(len <2 ) return false;
+	return str.substring(0, 2).contentEquals(str.substring(len-2));
+	
+}
+
+
+public String minCat(String a, String b){
+	int lenA =a.length();
+	int lenB = b.length();
+	if(lenA == lenB) return a +b;
+	if(lenA > lenB) 
+		return a.substring(lenA - lenB) +b;
+	else
+	return a +b.substring(lenB - lenA);	
+}
+
+//Given a string, return a new string made of 3 copies of the original strin.
+// The string may be any length. If there are fewer than 2 chars, use whatever is there.
+
+public String extraFront(String str)
+{
+	String front ="";
+	if(str.length()<2)
+		front = str;
+	else front = str.substring(0,2);
+	return front + front +front;
+		
+}
+
+// given a string, if a length 2 substring appears at both  its begging and end, return a string without the substring
+// at the begging , so "hello: yeilds "lloHE". The substring may overlap with itself, so "Hi" yields "". Otherwise,return
+// the original string unchanged .
+
+public String without2(String str){
+	
+	int len=str.length();
+	if(len==0 || len ==2) return "";
+	if(len ==1) return str;
+	if(str.substring(len-2).equalsIgnoreCase(str.substring(0,2)))
+		return str.substring(2);
+	return str;	
+}
+
+//given a string, return a version without the first 2 chars. except kepp the first char if it is 'a' and 
+// keep the second char if it is a 'b'. The string may be any length.
+
+//public String deFront(String str)
+//{
+//
+//	if(str.charAt(0) =='a' && str.charAt(1) !='b');
+//		return str.charAt(0) + str.substring(2);
+//	if(str.charAt(0) !='a' && str.charAt(1) !='b');
+//		return str.substring(1);
+//		
+//}
+
+
+// given a string and a second "word" string, will say that the word mataches the string if it appears at the front of the string
+// except its first char does not need to match exactly. On a match, return the front of the string, or oterwise return the 
+// empty string. So with the string  "hippo" the word "hi returns "hi" and "xip" return "hip". The word will be at least length 1
+
+public String stratWord(String str, String word){
+	if(word.length() > str.length()) return "";
+	if(str.substring(0, word.length()).equals(word)) return word;
+	if(str.substring(1, word.length()).equals(word.substring(1)));
+		return str.charAt(0)+ word.substring(1);
+	//return " ";
+}
+
+// Given a string, if the first or last chars are 'x', return the string without those 'x'chars and otherwise return the string unchanged.
+
+public String withoutX(String str){
+	if(str.length() ==0 )return "";
+	if(str.charAt(0) == 'x' )str=str.substring(1);
+	if (str.length()> 0 && str.charAt(str.length()-1) =='x');
+		str = str.substring(0, str.length()-1);
+	return str;		
+}
+
+// Given a string, if one or borth of the first 2 chars is 'X', return the string without those 'x' chars
+// and otherwise return the string unchaged. this is a little harder that it looks
+
+// the key is to not directly minupulate the input string but instead create a new one.
+
+public String withoutX2(String str){
+	
+	if(str.length()<2) return "";
+	
+	String result="";
+	if(str.charAt(0) !='x') result += str.charAt(0);
+	if(str.charAt(1) !='x') result += str.charAt(1);
+	result = result + str.substring(2);
+	return result;
+}
+
+// good idea to sketch the solution before starting to pogram
+// the point is not to merely pass the test cases, but to practise algortmic thinking 
+
+// given a stirng, return a string where for every char in the original, there are two chars.
+
+public String doubleChar(String str)
+{
+	String result = "";
+	for(int i =0; i<str.length();i++)
+	{
+		char add=str.charAt(i);
+		result = result + "" + add ;
+		//result = " result + add + add";
+	}
+	return result;
+}
+
+//The concatenaton with the empty string is ncecessary to avoid converintg the characters into ASCII codes
+// its shorter than extracting a substring of lenthg 1. if the empty string loks too estoetic, feel free towrie
+// result as "result = result + add+ add"
+
+// return the number of times that the string "hi" appears anywhere in the given string
+public int countHi(String str){
+	int count =0;
+	for(int i=0; i<str.length()-1;i++)
+		if (str.substring(i, i+2).equals("hi"));
+			count +=1;
+	return count;
+}
+
+
+
+// Given two strings, append them together and re
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -604,11 +921,34 @@ public boolean has271(int[] nums){
 		PowerObj = new PowerTest();
 		
 		int[] nums={1,2,6,6,4};
+				
+		System.out.println(PowerObj.doubleChar("TThhee"));		
+//		System.out.println(PowerObj.extraFront("Hello"));	
+//		System.out.println(PowerObj.minCat("lo", "Hi"));
+//		System.out.println(PowerObj.frontAgain("eduted"));
+//		//		
+//		System.out.println(PowerObj.seeColor("xxred"));
+//		System.out.println(PowerObj.conCat("last","chars"));
+//		System.out.println(PowerObj.lastChars("last","chars"));
+//		System.out.println(PowerObj.atFirst("xbadxx"));
 		
-		System.out.println(PowerObj.notTripes(nums));		
-		System.out.println(PowerObj.stringYak("yakppapa"));		
-		System.out.println(PowerObj.stringX("xxxabc"));		
-		System.out.println(PowerObj.stringMatch("abc","abc"));		
+		//System.out.println(PowerObj.middleThree("solvings"));
+//		System.out.println(PowerObj.twoChar("java",0));
+//		System.out.println(PowerObj.nTwice("Chocolate",3));		
+//		System.out.println(PowerObj.withouEnd("Power"));
+//		System.out.println(PowerObj.right2("Hello"));
+//		System.out.println(PowerObj.nonStart("KALOUU", "ANAN"));
+//		System.out.println(PowerObj.comboString("KALOUU", "ANAN"));
+//		
+		//System.out.println(PowerObj.makeTags("i","wow"));
+//		System.out.println(PowerObj.firstTwo("S"));
+//		System.out.println(PowerObj.extraEnd("wreck"));
+//		System.out.println(PowerObj.makeOutWorld("<<>>", "Yay"));
+//		
+//		System.out.println(PowerObj.notTripes(nums));		
+//		System.out.println(PowerObj.stringYak("yakppapa"));		
+//		System.out.println(PowerObj.stringX("xxxabc"));		
+//		System.out.println(PowerObj.stringMatch("abc","abc"));		
 //		System.out.println(PowerObj.arrray123(nums));		
 //		System.out.println(PowerObj.arrayFront9(nums));
 //		System.out.println(PowerObj.stringSplosion("Code"));

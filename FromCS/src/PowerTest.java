@@ -1008,7 +1008,7 @@ public boolean xyBalance(String str)
 	
 }
 
-// given two strings, a and b, create a bigger string made of the first chat of a, the first char of b,
+// given two strings, a and b, create a bigger string made of the first char of a, the first char of b,
 // the second char of a, the second char of b and so on. any leftover chars go at the end of the result
 
 //mixString("abc","xyz") "axbyxc"
@@ -1024,17 +1024,84 @@ public String mixString(String a, String b){
 	return res + b.substring(a.length());
 }
 
+// Given a string an an int n, return a string made of n repetitions of the last n chaeacters of the string
+// you may assume that n is between 0 and the length of the string, inclusive.
+
+// repeatEnd("hello",3) "llollollo"
+// repeatEnd("Hello",2) "lolol"
+// repeatEnd("Hello",1) "o"
+
+
+public String repeatEnd(String str, int n)
+{
+	String res = "";
+	for(int i =0; i<n;i++)
+		res = res + str.substring(str.length()-n);
+	return res;
+}
+
+// given a string and an int n, return a string made of the first n chracters of the string, followed by the first n-1
+// chracters of the string, and so on. you may assume that n is between 0 and the length of the string
+// inclusive (ie n>=0 and n <= str.length())
+
+// repeatFront("Chocolate",4) "ChocChoChC"
+// repeatFront("Chocolate",3) "ChocChC"
+// repeatFront("Ice Cream",2) "IcI"
+
+public String repeatFront(String str, int n)
+{
+	String res = "";
+	for(int i=n; i >0; i--)
+		res += str.substring(0,i);
+	return res;
+}
+
+//Given two strings, word and a separator sep, return a big string made of count occurances of the word, separated by the 
+// separator string.
+
+// repatSeparator("Word", "X",3) "WordXWordXWord"
+// repeatSeparator("This","And",2) "ThisAndThis"
+// repeatSepartor("This,"And",1) "This"
+
+public String repeatSeparator(String word, String sep, int count)
+{
+	String res = "";
+	if(count ==0)  return "";
+	while(count >1)
+	{
+		res = res + word +sep;
+		count = count -1;
+	}
+	return res + word;
+}
+
+// Given a string, consider the prefix made of the first N chars of the string, Does that
+// prefix  string appear somewhere else in  the string ? Assume that the string is not empty and that
+// N is in the range   1..str.legnth()
+
+//("abXYabc",1) true
+//("abXYabc",1) true
+//("abXYabc",1) false
+
+public boolean prefixAgain(String str, int n)
+{
+	String prefix = str.substring(0,n);
+		for(int i =n; i<=str.length() - prefix.length();i++)
+			if(str.substring(i,i+prefix.length()).equals(prefix))
+				return true;
+		return false;	
+}
+ 
 
 // Given two strings, append them together and re
-
+ 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		PowerObj = new PowerTest();
-		
+		PowerObj = new PowerTest();		
 		int[] nums={1,2,6,6,4};
 		
-		System.out.println(PowerObj.xyBalance("aaxbby"));
+		System.out.println(PowerObj.prefixAgain("abXYabc", 2));
 		System.out.println(PowerObj.doubleChar("TThhee"));		
 //		System.out.println(PowerObj.extraFront("Hello"));	
 //		System.out.println(PowerObj.minCat("lo", "Hi"));

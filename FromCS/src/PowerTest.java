@@ -1093,6 +1093,136 @@ public boolean prefixAgain(String str, int n)
 }
  
 
+// Given a string, does "xyz" appear in the middle of the string ? to define middle, welss
+// sat that the number of chars to the left and right of the "xyz" must differ by at most one.
+// This problem is harder than it looks
+
+//xyxMiddle("AAxyzBB") true
+//xyzMiddle("AxyzBB") true
+//xyzMiddle("AxyzBBB") false
+
+public boolean xyzMiddle(String str)
+{
+	int  len = str.length();
+	if (len <3) return false;
+	if(len % 2 ==1)
+		return str.substring(len/2-1, len/2 +2).equals("xyz");
+	return str.substring(len/2 -2, len/2 +1).equals("xyz")
+			|| str.substring(len/2-1, len/2 +2).equals("xyz");
+}
+
+// a sandwhich is two pieces of bread with somethin in between. return the string that is between
+// the first and last appearsance of "bread" in the given string or return the empty string "" if 
+// there are not two pieces of bread.
+
+// getSandwhich("breadjambread")
+// getSandwhich("xxbreadhambreadyy")
+//getSawhich("xxbreadyy")
+
+public String getSandwich(String str)
+{
+	
+	int first = str.indexOf("bread");
+	int last = str.lastIndexOf("bread");
+	if (first ==last) return "";
+	return str.substring(first +5,  last);
+	
+	
+}
+
+// return true if for every * in the string, if there are chars both immediately before and after the star, they are the same.
+
+// sameStarChar("xy*yzz") true
+// sameStarChar("xy*zzz") false
+// sameStarChar("*xa*az") true 
+
+public boolean sameStarChar(String str)
+{
+	for(int i =1; i < str.length()-1; i++)
+		if(str.charAt(i)== '*' && str.charAt(i-1) != str.charAt(i+1))
+			return false;
+	return true;
+}
+
+// return a version of the given string, where for evry (*) in the string the start and the chars
+// immeditely to its left and right are gone. so "ab*cd" yields "ad" and "ab**cd" also yields "ad"
+
+// starOut("ab*cd")
+//starOut("ab**cd")
+//starOut("sm*eilly")
+
+public String starOut(String str){
+	
+	while(str.indexOf('*') != -1 )
+	{
+		if(str.equals("*")) return "";
+		int starPos = str.indexOf('*');
+		int secondStar = str.indexOf('*', starPos+1);
+		if (secondStar - starPos ==1)
+		{
+			str = str.substring(0,starPos) + str.substring(secondStar);
+			continue;
+		}
+		if(starPos ==0)
+			str=str.substring(starPos+2);
+		else if (starPos == str.length()-1)
+			str =str.substring(0, str.length()-1);
+		else str = str.substring(0, starPos-1) + str.substring(starPos+2);		
+	}
+	return str;
+	
+}
+
+// given a string and a non-empty word string, return a verison of the original String where all chars have been replaced
+// by pulses ("+"), except for appearances of the word string which are preserved unchanged.
+
+// plusOut("12xy34", "xy")
+// plusOut(12xy34", "1")
+// plusOut(12xy34xyabcxy", "xy")
+
+public String plusOut(String str, String word)
+{
+	int start = 0;
+	int end =  str.indexOf(word);
+	while (end != -1)
+	{
+		for(int i = start; i <end; i++)
+			str = str.substring(0,i) + "+" + str.substring(i+1);
+		start = end + word.length();
+		end  = str.indexOf(word,start);
+	}
+	for (int i = start; i< str.length(); i++)
+		str = str.substring(0,i)  + "+" + str.substring(i+1);
+	return str;	
+}
+
+//Given a string and a non-empty word string, return a string made of each char just before and just after evry appearance
+// of the word in the string. Ignore cases where there is no char before or after the word, and a char may be included
+// twice if it is between two words.
+
+public String wordEnds(String str, String word)
+{
+	
+	String res = "";
+	int pos = str.indexOf(word);
+	while(pos != -1)
+	{
+		if (pos !=0) 
+			res += str.charAt(pos-1);
+		if(pos + word.length() == str.length()) 
+			break;
+		res += str.charAt(pos + word.length());
+		pos = str.indexOf(word, pos + 1);
+	}
+	return res;
+	
+}
+
+
+
+
+
+
 // Given two strings, append them together and re
  
 	public static void main(String[] args) {
@@ -1101,7 +1231,7 @@ public boolean prefixAgain(String str, int n)
 		PowerObj = new PowerTest();		
 		int[] nums={1,2,6,6,4};
 		
-		System.out.println(PowerObj.prefixAgain("abXYabc", 2));
+		System.out.println(PowerObj.plusOut("12xy34", "xy"));
 		System.out.println(PowerObj.doubleChar("TThhee"));		
 //		System.out.println(PowerObj.extraFront("Hello"));	
 //		System.out.println(PowerObj.minCat("lo", "Hi"));
